@@ -1,1 +1,5 @@
-console.log('model init');
+(function(window) {
+    'use strict';
+
+    console.log('model init');
+})(window);

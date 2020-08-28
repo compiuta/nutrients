@@ -1,1 +1,5 @@
-console.log('controller init');
+(function(window) {
+    'use strict';
+
+    console.log('controller init');
+})(window);

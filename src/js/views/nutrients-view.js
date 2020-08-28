@@ -1,1 +1,5 @@
-console.log('view init');
+(function(window) {
+    'use strict';
+
+    console.log('view init');
+})(window);
