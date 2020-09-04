@@ -1,22 +1,25 @@
 (function(window) {
     'use strict';
 
-    function getData(fetchUrl) {
+    function getData(fetchUrl, callBack) {
         fetch(fetchUrl)
         .then(response => response.json())
-        .then(data => console.log(data));
+        .then(data => {
+            console.log(data)
+            callBack(data);
+        });
     }
 
     function getSearchData(foodItem) {
         const fetchUrl = `https://nutrients1.herokuapp.com/${foodItem}`;
 
-        getData(fetchUrl);
+        getData(fetchUrl, app.nutrientsController.searchDataReturned);
     }
 
     function getFoodData(foodId) {
         const fetchUrl = `https://nutrients1.herokuapp.com/nutrients/${foodId}`;
 
-        getData(fetchUrl);
+        getData(fetchUrl, app.nutrientsController.foodDataReturned);
     }
 
     const nutrientsModel = {
@@ -24,7 +27,7 @@
             getSearchData(foodItem)
         },
         getFoodData: function(foodId) {
-            getSearchData(foodId);
+            getFoodData(foodId);
         }
     };
 
