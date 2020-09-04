@@ -11,6 +11,15 @@
         app.nutrientsModel.getFoodData(foodId);
     }
 
+    function searchDataReturned(data) {
+        app.nutrientsView.populateSearchData(data);
+    }
+
+    function foodDataReturned(data) {
+        const foodDataString = JSON.stringify(data);
+        app.nutrientsView.populateFoodData(foodDataString);
+    }
+
     console.log('controller init');
 
     const nutrientsController = {
@@ -19,6 +28,12 @@
         },
         fetchFoodData: function(foodId) {
             fetchFoodData(foodId);
+        },
+        searchDataReturned: function(data) {
+            searchDataReturned(data);
+        },
+        foodDataReturned: function(data) {
+            foodDataReturned(data);
         }
     }
 
