@@ -1,0 +1,41 @@
+<head>
+  <title>{{ .Title }} | {{ $.Site.Title }}</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link rel="canonical" href="">
+
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+   <!-- fonts-->
+   <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=PT+Sans&family=Playfair+Display&display=swap" rel="stylesheet">
+
+    {{ $style := resources.Get "scss/app.scss" | toCSS | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+     
+     <!-- Favicons -->
+     <link rel="apple-touch-icon" sizes="180x180" href="public/img/apple-touch-icon.png">
+     <link rel="icon" type="image/png" href="public/img/favicon-32x32.png" sizes="32x32">
+     <link rel="icon" type="image/png" href="public/img/favicon-16x16.png" sizes="16x16">
+     <link rel="mask-icon" href="public/img/safari-pinned-tab.svg" color="#ff4400">
+     <meta name="theme-color" content="#fff">
+
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="">
+    <meta property="og:title" content="">
+    <meta property="og:url" content="/">
+    <meta property="og:image" content="public/img/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" value="summary">
+    <meta name="twitter:image" content="">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:description" content="">
+  
+    <!-- Netlify CMs-->
+    {{ if .IsHome }}
+      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    {{ end }}
+</head>

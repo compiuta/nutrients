@@ -1,0 +1,23 @@
+{{ define "main" }}
+
+   <div>
+    {{ range (.Paginator 4).Pages.ByPublishDate.Reverse }}
+    
+     <div>
+       <a href="{{ .RelPermalink }}">
+         <h2>
+           {{ .Title }}
+         </h2>
+         <h3>
+           Problems look mighty small from 150 miles up
+         </h3>
+       </a>
+       <p>Posted by
+         <a href="#">Start Bootstrap</a>
+         on September 24, 2019</p>
+     </div>
+     <hr>
+     {{ end }}
+   </div>
+
+{{ end }}

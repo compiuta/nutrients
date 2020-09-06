@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="{{ $.Site.Language.Lang }}">
+    {{ partial "head/head.html" . }}
+
+    <body data-bodyTag class="body-tag {{ if in (print .URL) "blog"}}blog-page{{ end }}">
+        <div class="layout-styled">
+
+            {{ partial "header.html" . }}
+
+            {{ block "main" . }}{{ end }}
+            
+            {{ partial "footer.html" . }}
+
+        </div>
+    </body>
+</html>

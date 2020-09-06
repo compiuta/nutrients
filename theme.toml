@@ -1,0 +1,9 @@
+name = "Nutrients"
+license = "MIT"
+licenselink = ""
+description = ""
+homepage = ""
+
+[author]
+    name = "compiuta"
+    homepage = "https://github.com/compiuta/"

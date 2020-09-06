@@ -1,0 +1,10 @@
+
+<footer class="main-footer">
+    <h2>footer</h2>
+</footer>
+
+{{ $model := resources.Get "js/models/nutrients-model.js" }}
+{{ $view := resources.Get "js/views/nutrients-view.js" }}
+{{ $controller := resources.Get "js/controllers/nutrients-controller.js" }}
+{{ $js := slice $model $view $controller | resources.Concat "js/bundle.js" }}
+<script src="{{ $js.RelPermalink }}"></script>
