@@ -3,7 +3,6 @@
 
     const searchFoodForm = document.querySelector('[data-searchFoodForm]');
     const searchFoodInput = document.querySelector('[data-searchFoodInput]');
-    const searchResultsContainer = document.querySelector('[data-searchResults]');
 
     function searchFood(e) {
         e.preventDefault();
@@ -14,30 +13,22 @@
 
         console.log(searchInputValue);
 
-        app.nutrientsController.fetchSearchData(searchInputValue);
+        window.location.href = `${window.location.href}/search/?q=${searchInputValue}`;
 
-    }
-
-    function getFoodData(e) {
-        const clickedEl = e.currentTarget;
-        const foodId = clickedEl.dataset.foodId;
-
-        console.log(foodId)
-        app.nutrientsController.fetchFoodData(foodId);
     }
 
     function populateSearchData(data) {
+        const searchResultsContainer = document.querySelector('[data-populateResults]');
+
         searchResultsContainer.innerHTML = '';
 
         const tempfrag = document.createDocumentFragment();
 
         data.forEach(element => {
-            const tempel = document.createElement('h4');
+            const tempel = document.createElement('a');
 
             tempel.innerText = element.description;
-            tempel.setAttribute('data-food-id', element.fdc_id);
-
-            tempel.addEventListener('click', getFoodData);
+            tempel.href = `${window.location.origin}/food/?q=${element.fdc_id}`;
 
             tempfrag.appendChild(tempel);
         });
@@ -46,12 +37,15 @@
     }
 
     function populateFoodData(data) {
+        const searchResultsContainer = document.querySelector('[data-populateResults]');
+        
         searchResultsContainer.innerHTML = '';
 
         searchResultsContainer.innerText = data;
     }
 
     searchFoodForm.addEventListener('submit', searchFood);
+    window.addEventListener('load', app.nutrientsController.checkPage);
 
     const nutrientsView = {
         populateSearchData: function(data) {
