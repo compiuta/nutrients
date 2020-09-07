@@ -20,12 +20,28 @@
         app.nutrientsView.populateFoodData(foodDataString);
     }
 
+    function extractUrlParameter(currentLocation) {
+        const urlParameter = currentLocation.substr(currentLocation.indexOf("=") + 1);
+        const parameter = urlParameter.replace(/'+'/g, ' ');
+
+        return parameter;
+    }
+
+    function checkPage() {
+        const currentLocation = window.location.href;
+        const urlParameter = extractUrlParameter(currentLocation);
+debugger;
+        console.log(urlParameter)
+        if (currentLocation.includes('/search')) {
+            fetchSearchData(urlParameter);
+        } else if (currentLocation.includes('/food')) {
+            fetchFoodData(urlParameter);
+        }
+    }
+
     console.log('controller init');
 
     const nutrientsController = {
-        fetchSearchData: function(foodItem) {
-            fetchSearchData(foodItem);
-        },
         fetchFoodData: function(foodId) {
             fetchFoodData(foodId);
         },
@@ -34,6 +50,9 @@
         },
         foodDataReturned: function(data) {
             foodDataReturned(data);
+        },
+        checkPage: function() {
+            checkPage();
         }
     }
 
