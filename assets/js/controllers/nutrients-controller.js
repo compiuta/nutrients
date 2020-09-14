@@ -2,12 +2,14 @@
     'use strict';
 
     function fetchSearchData(foodItem) {
+        app.nutrientsView.toggleLoadingOverlay();
         app.nutrientsModel.getSearchData(foodItem);
 
         console.log('fetching data');
     }
 
     function fetchFoodData(foodId) {
+        app.nutrientsView.toggleLoadingOverlay();
         app.nutrientsModel.getFoodData(foodId);
     }
 
@@ -30,7 +32,7 @@
     function checkPage() {
         const currentLocation = window.location.href;
         const urlParameter = extractUrlParameter(currentLocation);
-debugger;
+
         console.log(urlParameter)
         if (currentLocation.includes('/search')) {
             fetchSearchData(urlParameter);
