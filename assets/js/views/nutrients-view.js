@@ -3,6 +3,11 @@
 
     const searchFoodForm = document.querySelector('[data-searchFoodForm]');
     const searchFoodInput = document.querySelector('[data-searchFoodInput]');
+    const loadingOverlay = document.querySelector('[data-loadingOverlay]');
+
+    function toggleLoadingOverlay() {
+        loadingOverlay.classList.toggle('hide');
+    }
 
     function searchFood(e) {
         e.preventDefault();
@@ -34,6 +39,8 @@
         });
 
         searchResultsContainer.appendChild(tempfrag);
+
+        toggleLoadingOverlay();
     }
 
     function populateFoodData(data) {
@@ -42,12 +49,17 @@
         searchResultsContainer.innerHTML = '';
 
         searchResultsContainer.innerText = data;
+
+        toggleLoadingOverlay();
     }
 
     searchFoodForm.addEventListener('submit', searchFood);
     window.addEventListener('load', app.nutrientsController.checkPage);
 
     const nutrientsView = {
+        toggleLoadingOverlay: function() {
+            toggleLoadingOverlay();
+        },
         populateSearchData: function(data) {
             populateSearchData(data);
         },
