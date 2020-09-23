@@ -22,23 +22,30 @@
 
     }
 
+    function createSearchResultsItem(itemData) {
+        const searchItem = document.createElement('a');
+
+        searchItem.classList.add('search-item');
+        searchItem.innerText = itemData.description;
+        searchItem.href = `${window.location.origin}/food/?q=${itemData.fdc_id}`;
+
+        return searchItem;
+    }
+
     function populateSearchData(data) {
         const searchResultsContainer = document.querySelector('[data-populateResults]');
 
         searchResultsContainer.innerHTML = '';
 
-        const tempfrag = document.createDocumentFragment();
+        const searchResultsFragment = document.createDocumentFragment();
 
         data.forEach(element => {
-            const tempel = document.createElement('a');
+            const searchItem = createSearchResultsItem(element);
 
-            tempel.innerText = element.description;
-            tempel.href = `${window.location.origin}/food/?q=${element.fdc_id}`;
-
-            tempfrag.appendChild(tempel);
+            searchResultsFragment.appendChild(searchItem);
         });
 
-        searchResultsContainer.appendChild(tempfrag);
+        searchResultsContainer.appendChild(searchResultsFragment);
 
         toggleLoadingOverlay();
     }
